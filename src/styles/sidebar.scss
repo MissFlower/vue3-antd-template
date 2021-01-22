@@ -1,0 +1,10 @@
+#app {
+  .sidebar-container {
+    width: $sideBarWidth !important;
+    height: 100%;
+    overflow: hidden;
+    font-size: 0;
+    background-color: $menuBg;
+    transition: width .28s;
+  }
+}
