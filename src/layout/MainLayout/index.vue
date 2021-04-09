@@ -4,26 +4,41 @@
  * @Author: AiDongYang
  * @Date: 2021-01-22 14:59:16
  * @LastEditors: AiDongYang
- * @LastEditTime: 2021-01-22 15:01:29
+ * @LastEditTime: 2021-04-08 20:15:05
 -->
 <template>
-  <div class="app-wrapper">
-    <!-- 左侧菜单栏 -->
-    <Sidebar />
-    <div class="right-container">
-      <!-- 导航栏 -->
+  <ALayout class="app-wrapper">
+    <!-- 导航栏 -->
+    <ALayoutHeader class="header">
       <Navbar />
-      <!-- 内容区 -->
-      <div class="main-container">
-        <AppMain />
-      </div>
-    </div>
-  </div>
+    </ALayoutHeader>
+
+    <ALayout>
+      <ALayoutSider
+        :width="sideBarWidth"
+        v-model:collapsed="collapsed"
+        :trigger="null"
+        collapsible
+      >
+        <!-- 左侧菜单栏 -->
+        <Sidebar />
+      </ALayoutSider>
+
+      <ALayout>
+        <!-- 内容区 -->
+        <ALayout-content class="main-container">
+          <AppMain />
+        </ALayout-content>
+      </ALayout>
+    </ALayout>
+  </ALayout>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { Navbar, Sidebar, AppMain } from 'src/layout/components/index'
+import { sideBarWidth as sideBarStyle } from '@/styles/variables.scss'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -34,26 +49,27 @@ export default defineComponent({
   },
   setup() {
     // setup
+    const store = useStore()
+    const collapsed = computed(() => store.state.app.sidebar.collapsed)
+    const sideBarWidth = computed(() => sideBarStyle)
+
+    return {
+      collapsed,
+      sideBarWidth
+    }
   }
 })
 </script>
 
 <style lang="scss" scoped>
 .app-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: row;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 
-  .right-container {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    width: 0;
-    height: 100%;
-    background-color: #FFF;
+  .header {
+    height: 50px;
+    padding: 0;
+    background: #FFF;
   }
 }
 </style>

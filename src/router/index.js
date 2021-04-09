@@ -4,7 +4,7 @@
  * @Author: AiDongYang
  * @Date: 2021-01-22 14:21:02
  * @LastEditors: AiDongYang
- * @LastEditTime: 2021-01-22 20:16:46
+ * @LastEditTime: 2021-01-27 11:25:26
  */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import MainLayout from 'src/layout/MainLayout'
@@ -44,6 +44,11 @@ export const constantRoutes = [
   {
     path: '/guide',
     component: MainLayout,
+    // alwaysShow: true,
+    // meta: {
+    //   title: '导航',
+    //   icon: 'iconteam'
+    // },
     redirect: '/guide/index',
     children: [{
       path: 'index',
@@ -98,6 +103,55 @@ export const constantRoutes = [
         name: 'MixChart',
         component: () => import('src/views/MixChart'),
         meta: { title: 'Mix Chart', noCache: true, code: '002003' }
+      }
+    ]
+  },
+  {
+    path: '/menu',
+    name: 'Menu',
+    component: MainLayout,
+    redirect: '/menu/menu1',
+    meta: { title: 'menu', icon: 'iconalert' },
+    children: [
+      {
+        path: 'menu1',
+        name: 'Menu1',
+        component: () => import('@/views/Menu'),
+        meta: { title: 'menu1', icon: 'iconalert' },
+        children: [
+          {
+            path: 'menu1-1',
+            name: 'Menu1-1',
+            component: () => import('@/views/Menu'),
+            meta: { title: 'menu1-1', icon: 'iconalert' },
+            children: [
+              {
+                path: 'menu1-1-1',
+                name: 'Menu1-1-1',
+                component: () => import('@/views/Menu'),
+                meta: { title: 'menu1-1-1', icon: 'iconalert' }
+              },
+              {
+                path: 'menu1-1-2',
+                name: 'Menu1-1-2',
+                component: () => import('@/views/Menu'),
+                meta: { title: 'menu1-1-2', icon: 'iconalert' }
+              }
+            ]
+          },
+          {
+            path: 'menu1-2',
+            name: 'Menu1-2',
+            component: () => import('@/views/Menu'),
+            meta: { title: 'menu1-2', icon: 'iconalert' }
+          }
+        ]
+      },
+      {
+        path: 'menu2',
+        name: 'Menu2',
+        component: () => import('@/views/Menu'),
+        meta: { title: 'menu2', icon: 'iconalert' }
       }
     ]
   }

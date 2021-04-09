@@ -8,7 +8,8 @@ module.exports = {
     'eslint:recommended'
   ],
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
+    ecmaVersion: 2020
   },
   rules: {
     "vue/max-attributes-per-line": [2, {
@@ -22,7 +23,7 @@ module.exports = {
     "vue/multiline-html-element-content-newline": "off",
     "vue/name-property-casing": ["error", "PascalCase"],
     "vue/no-v-html": "off",
-    'vue/html-self-closing': 0,
+    'vue/html-self-closing': 2,
     'vue/attributes-order': 0,
     'vue/attribute-hyphenation': 0,
     'accessor-pairs': 2,

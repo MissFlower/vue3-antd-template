@@ -4,10 +4,12 @@
  * @Author: AiDongYang
  * @Date: 2021-01-22 15:29:55
  * @LastEditors: AiDongYang
- * @LastEditTime: 2021-01-22 17:18:09
+ * @LastEditTime: 2021-01-25 16:39:27
  */
 import { constantRoutes, asyncRoutes } from 'src/router'
 import * as types from './types'
+import { isExternal } from '@/utils/validate'
+import path from 'path'
 /**
  * @Function: 判断当前用户是否具有权限
  * @Description: 使用code确定当前用户是否具有权限
@@ -29,13 +31,18 @@ function hasPermission(permissionList, route) {
  * @param {permissionList}
  * @return {[]}
  */
-function filterAsyncRoutes(asyncRoutes, permissionList) {
+function filterAsyncRoutes(asyncRoutes, permissionList, baseUrl = '/') {
   const res = []
   asyncRoutes.forEach(route => {
+    route.fullPath = isExternal(route.path)
+      ? route.path
+      : path.resolve(baseUrl, route.path)
+
     const tmp = { ...route }
+
     if (hasPermission(permissionList, route)) {
       if (tmp.children) {
-        tmp.children = filterAsyncRoutes(tmp.children, permissionList)
+        tmp.children = filterAsyncRoutes(tmp.children, permissionList, route.fullPath)
       }
       res.push(tmp)
     }
@@ -43,15 +50,32 @@ function filterAsyncRoutes(asyncRoutes, permissionList) {
   return res
 }
 
+const withFullPathContantRoutes = (function setFullPathConstantRoutes(constantRoutes, baseUrl = '/') {
+  const res = []
+  constantRoutes.forEach(route => {
+    route.fullPath = isExternal(route.path)
+      ? route.path
+      : path.resolve(baseUrl, route.path)
+
+    const tmp = { ...route }
+
+    if (tmp.children) {
+      tmp.children = setFullPathConstantRoutes(tmp.children, route.fullPath)
+    }
+    res.push(tmp)
+  })
+  return res
+})(constantRoutes)
+
 const state = {
-  routes: constantRoutes || [],
+  routes: withFullPathContantRoutes || [],
   addRoutes: []
 }
 
 const mutations = {
   [types.SET_ROUTES]: (state, routes) => {
     state.addRoutes = routes
-    state.routes = constantRoutes.concat(routes)
+    state.routes = withFullPathContantRoutes.concat(routes)
   }
 }
 

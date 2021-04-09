@@ -4,7 +4,7 @@
  * @Author: AiDongYang
  * @Date: 2021-01-22 17:53:29
  * @LastEditors: AiDongYang
- * @LastEditTime: 2021-01-22 20:04:09
+ * @LastEditTime: 2021-01-25 09:39:57
 -->
 <template>
   <component :is="type" v-bind="linkProps(to)">
@@ -34,7 +34,7 @@ export default defineComponent({
     })
 
     const linkProps = function(to) {
-      console.log(to)
+      // console.log(to)
       if (isWithExternal.value) {
         return {
           href: to,

@@ -4,21 +4,8 @@
  * @Author: AiDongYang
  * @Date: 2021-01-22 14:21:02
  * @LastEditors: AiDongYang
- * @LastEditTime: 2021-01-22 15:07:49
+ * @LastEditTime: 2021-03-23 15:27:18
 -->
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <router-view />
 </template>
-
-<style lang="scss">
-#app {
-  height: 100%;
-
-  div,
-  section {
-    box-sizing: border-box;
-  }
-}
-</style>

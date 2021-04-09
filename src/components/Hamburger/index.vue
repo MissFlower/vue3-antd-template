@@ -4,7 +4,7 @@
  * @Author: AiDongYang
  * @Date: 2021-01-22 14:52:09
  * @LastEditors: AiDongYang
- * @LastEditTime: 2021-01-22 15:01:18
+ * @LastEditTime: 2021-01-27 10:08:57
 -->
 <template>
   <div class="hamburger-container" @click="toggleClick">
@@ -53,13 +53,13 @@ export default defineComponent({
   display: inline-block;
   width: 20px;
   height: 20px;
-  padding: 5px 12px;
+  margin-left: 8px;
   vertical-align: middle;
-  transition: .5s ease-in-out;
+  transform: rotate(180deg);
   cursor: pointer;
 }
 
 .hamburger.is-active {
-  transform: rotate(540deg);
+  transform: rotate(0deg);
 }
 </style>

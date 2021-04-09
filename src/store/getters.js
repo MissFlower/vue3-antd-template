@@ -4,10 +4,10 @@
  * @Author: AiDongYang
  * @Date: 2021-01-22 15:30:24
  * @LastEditors: AiDongYang
- * @LastEditTime: 2021-01-22 17:17:43
+ * @LastEditTime: 2021-01-26 17:33:42
  */
 const getters = {
-  sideBar: state => state.app.sideBar,
+  sidebar: state => state.app.sidebar,
   permission_routes: state => state.permission.routes
 }
 

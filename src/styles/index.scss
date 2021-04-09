@@ -1,5 +1,6 @@
 @import './variables.scss';
 @import './sidebar.scss';
+@import './navbar.scss';
 
 html,
 body {
@@ -109,6 +110,15 @@ a:focus {
 .el-submenu [class^=el-icon-] {
   // width: initial;
   width: 18px;
+}
+
+#app {
+  height: 100%;
+
+  div,
+  section {
+    box-sizing: border-box;
+  }
 }
 
 /* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */
