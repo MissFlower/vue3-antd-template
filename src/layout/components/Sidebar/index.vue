@@ -4,7 +4,7 @@
  * @Author: AiDongYang
  * @Date: 2021-01-22 15:00:06
  * @LastEditors: AiDongYang
- * @LastEditTime: 2021-04-09 13:52:54
+ * @LastEditTime: 2021-04-21 13:05:53
 -->
 <template>
   <AMenu
@@ -59,10 +59,12 @@ export default defineComponent({
 
     onMounted(() => {
       watch(collapsed, newValue => {
+        console.log(123, newValue)
         if (newValue) {
           lastOpenKeys = state.openKeys
           state.openKeys = []
         } else {
+          console.log(1, lastOpenKeys)
           state.openKeys = lastOpenKeys
           lastOpenKeys = []
         }
@@ -98,6 +100,8 @@ export default defineComponent({
           state.openKeys = [`/${pathList[pathListLen - 1]}`]
         }
 
+        console.log(collapsed.value)
+        console.log(state.openKeys)
         if (collapsed.value) {
           lastOpenKeys = state.openKeys
           state.openKeys = []
