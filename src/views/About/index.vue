@@ -4,7 +4,7 @@
  * @Author: AiDongYang
  * @Date: 2021-01-22 15:17:35
  * @LastEditors: AiDongYang
- * @LastEditTime: 2021-01-22 15:17:46
+ * @LastEditTime: 2021-06-18 21:40:00
 -->
 <template>
   <div>
@@ -17,7 +17,6 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'About',
   setup() {
-
   }
 })
 </script>
